@@ -21,6 +21,12 @@ fi
 cd $_dwm_dir
 echo "==> Installing dwm..."
 echo " --- dwm ---" > ../make.log
+
+# delete the config.h created by makefile
+if [ -f ./config.h ]; then
+    rm ./config.h
+fi
+
 make >> ../make.log
 echo " --- dwm install ---" >> ../make.log
 make install >> ../make.log
