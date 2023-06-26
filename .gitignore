@@ -1,0 +1,6 @@
+/make.log
+/dwm-src/*.o
+/dwm-src/*.orig
+/dwm-src/*.rej
+/dwm-src/dwm
+/dwm-src/config.h
