@@ -1,10 +1,10 @@
 #!/bin/sh
 
 _dwm_dir="./dwm-src"
+_blks_dir="./dwmblocks-async"
 
-if [ ! -d "$_dwm_dir" ]; then
-	echo "dwm directory \"$_dwm_dir\" not found."
-	exit 1
+if [[ -z "$(ls | grep dwm.desktop)" ]]; then
+    echo "Wrong directory. Please check if you are in the project root directory."
 fi
 
 if [[ "$1" == "clean" ]]; then
@@ -30,6 +30,13 @@ fi
 make >> ../make.log
 echo " --- dwm install ---" >> ../make.log
 make install >> ../make.log
+cd ..
+
+echo "==> Installing dwmblocks-async..."
+cd $_blks_dir
+echo " --- dwmblocks ---" >> ../make.log
+make install >> ../make.log
+
 echo " --- DONE --- " >> ../make.log
 echo "==> Done"
 cd ..
