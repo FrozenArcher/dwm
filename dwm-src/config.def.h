@@ -13,18 +13,19 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 8;       /* vertical padding of bar */
 static const int sidepad            = 8;       /* horizontal padding of bar */
 static const int horizpadbar        = 4;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 8;        /* vertical padding for statusbar */
-static const char *fonts[]          = { "monospace:size=12" };
+static const int vertpadbar         = 16;        /* vertical padding for statusbar */
+static const char *fonts[]          = { "LXGW Wenkai:size=12", "monospace:size=12" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#22222a";
 static const char col_gray2[]       = "#44444c";
 static const char col_gray3[]       = "#bbbbca";
 static const char col_gray4[]       = "#eeeeff";
 static const char col_gray5[]       = "#333338";
+static const char col_gray6[]       = "#191929";
 static const char col_cyan[]        = "#333338";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeStatus]  = { col_gray4, col_gray5,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeStatus]  = { col_gray4, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeTagsSel]  = { col_gray4, col_gray5,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
 	[SchemeInfoSel]  = { col_gray4, col_gray5,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
@@ -32,10 +33,10 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 
 static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 1;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
@@ -58,9 +59,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "TL",      tile },    /* first entry is default */
+	{ "FL",      NULL },    /* no layout function means floating behavior */
+	{ "MN",      monocle },
 };
 
 /* key definitions */
