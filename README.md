@@ -4,6 +4,8 @@ A dynamic window manager - FrozenArcher's fork
 ## Installation
 
 ```bash
+git clone git@github.com:FrozenArcher/dwm.git $HOME/dwm
+cd $HOME/dwm
 sudo ./install
 ```
 
