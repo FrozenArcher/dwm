@@ -33,6 +33,10 @@ make install >> ../make.log
 cd ..
 
 echo "==> Installing dwmblocks-async..."
+
+cp -fv ./config-dwmblocks.h ./dwmblocks-async/config.h
+cp -fv ./config-dwmblocks.c ./dwmblocks-async/config.c
+
 cd $_blks_dir
 echo " --- dwmblocks ---" >> ../make.log
 make install >> ../make.log

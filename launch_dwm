@@ -4,6 +4,9 @@ if [[ -z "$DWM_DIR" ]]; then
     export DWM_DIR="$HOME/dwm"
 fi
 
+export STATUSBAR="dwmblocks"
+export DWM_BAR="$DWM_DIR/scripts/bar"
+
 dwmblocks &
 
 while true; do
