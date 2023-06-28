@@ -10,7 +10,7 @@ esac
 
 . $DWM_BAR/sb-theme
 if [ "$(pamixer --get-mute)" = true ]; then
-    display " " 9
+    display "  " 9
     exit
 fi
 
@@ -18,11 +18,11 @@ vol="$(pamixer --get-volume)"
 [ $? -ne 0 ] && [ -z "$vol" ] && exit 1
 
 if [ "$vol" -gt 40 ]; then
-    icon=" "
+    icon="  "
 elif [ "$vol" -gt 15 ]; then
-    icon=" "
+    icon="  "
 else
-    icon=" "
+    icon="  "
 fi
 
 display "$icon$vol%"
