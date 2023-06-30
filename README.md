@@ -5,13 +5,16 @@ A dynamic window manager - FrozenArcher's fork
 
 ```bash
 git clone git@github.com:FrozenArcher/dwm.git $HOME/dwm
-cd $HOME/dwm
+cd $HOME/dwm/dwmblocks
+git submodule init
+git submodule update
+cd ..
 sudo ./install
 ```
 
 ## Launching
 
-Via a display manager or in your `.xinitrc`:
+Via a display manager or in your `.xinitrc`, add:
 
 ```bash
 launch_dwm

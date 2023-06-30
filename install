@@ -1,10 +1,15 @@
 #!/bin/sh
+# exit code:
+# 0: success
+# 1: user's error
+# 2: compile error
 
 _dwm_dir="./dwm-src"
 _blks_dir="./dwmblocks-async"
 
 if [[ -z "$(ls | grep dwm.desktop)" ]]; then
     echo "Wrong directory. Please check if you are in the project root directory."
+    exit 1
 fi
 
 if [[ "$1" == "clean" ]]; then
@@ -28,6 +33,11 @@ if [ -f ./config.h ]; then
 fi
 
 make >> ../make.log
+if [ $? -ne 0 ]; then
+    echo "==> !! DWM compile error. Please see make.log for details."
+    exit 2
+fi
+
 echo " --- dwm install ---" >> ../make.log
 make install >> ../make.log
 cd ..
@@ -40,6 +50,10 @@ cp -fv ./config-dwmblocks.c ./dwmblocks-async/config.c
 cd $_blks_dir
 echo " --- dwmblocks ---" >> ../make.log
 make install >> ../make.log
+if [ $? -ne 0 ]; then
+    echo "==> !! dwmblocks compile error. Please see make.log for details."
+    exit 2
+fi
 
 echo " --- DONE --- " >> ../make.log
 echo "==> Done"
