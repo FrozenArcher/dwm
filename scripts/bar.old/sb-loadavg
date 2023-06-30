@@ -9,5 +9,5 @@ threshold=5
 load=$(cut -d' ' -f1 /proc/loadavg)
 
 . $DWM_BAR/sb-theme
-[ 1 -eq "$(echo "$load > $threshold" | bc)" ] && color=9
+[ 1 -eq "$(echo "$load > $threshold" | bc)" ] && color="#990000"
 display " $load" "$color"

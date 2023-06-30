@@ -1,29 +1,35 @@
 #!/bin/sh
 # Utility functions for theming statusbar scripts.
 
+sep_px=8
+padding=" "
+
+export c_defbg="#22222a"
+export c_deffg="#eeeeff"
+export c_blue="#000099"
+
+# update: echo $1; when using dwm, echo colors as well.
+#   if fg/bg is not specified, use default color.
+#   if only one color is specified, use it as background.
+# params
+# $1 text to display
+# $2 background color [optional]
+# $3 foreground color [optional]
 update() {
-    if [ -n "$2" ]; then
-        color="$2"
+    if [[ ! -z "$2" ]] && [[ ! -z "$3" ]]; then
+        bg="$2"
+        fg="$3"
+    elif [[ ! -z "$2" ]] && [[ -z "$3" ]]; then
+        bg="$2"
+        fg="$c_deffg"
     else
-        case "$(basename "$0")" in
-            sb-mail) color=13 ;;
-            sb-music) color=14 ;;
-            sb-disk) color=10 ;;
-            sb-memory) color=15 ;;
-            sb-loadavg) color=11 ;;
-            sb-mic) color=9 ;;
-            sb-record) color=9 ;;
-            sb-volume) color=15 ;;
-            sb-battery) color=14 ;;
-            sb-date) color=12 ;;
-            sb-network) color=9 ;;
-            *) color=15 ;;
-        esac
+        bg="$c_defbg"
+        fg="$c_deffg"
     fi
 
     case "$STATUSBAR" in
         "dwmblocks")
-            echo "^C$color^$1"
+            echo "^f$sep_px^^b$bg^^c$fg^$padding$1$padding^d^"
             ;;
         *)
             echo "$1"

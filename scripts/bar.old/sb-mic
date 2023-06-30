@@ -3,5 +3,5 @@
 
 if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q yes; then
     . $DWM_BAR/sb-theme
-    display ""
+    display "" "#000000"
 fi

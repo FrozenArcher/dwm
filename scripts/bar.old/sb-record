@@ -3,5 +3,5 @@
 
 if [ -f /tmp/record ]; then
     . $DWM_BAR/sb-theme
-    display ""
+    display "" "#000000"
 fi

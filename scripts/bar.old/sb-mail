@@ -31,4 +31,4 @@ done
 
 [ -z "$counts" ] && exit
 . $DWM_BAR/sb-theme
-display "$counts"
+display "$counts" "#000000"

@@ -24,4 +24,4 @@ fi
 [ -z "$currentSong" ] && exit
 
 . $DWM_BAR/sb-theme
-display "$icon $currentSong"
+display "$icon $currentSong" "#000000"

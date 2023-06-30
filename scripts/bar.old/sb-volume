@@ -25,4 +25,4 @@ else
     icon="  "
 fi
 
-display "$icon$vol%"
+display "$icon$vol%" "#000000"
