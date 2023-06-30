@@ -5,12 +5,17 @@ A dynamic window manager - FrozenArcher's fork
 
 ```bash
 git clone git@github.com:FrozenArcher/dwm.git $HOME/dwm
-cd $HOME/dwm/dwmblocks
+cd $HOME/dwm
 git submodule init
 git submodule update
-cd ..
 sudo ./install
 ```
+
+## Configuration
+
+* edit dwm.desktop to change `$DWM_DIR` and `$DWM_BAR`.
+* edit `config-dwm.h` to configure dwm. (dwm's config.h)
+* edit `config-dwmblocks.h/.c` to configure dwmblocks. (dwmblocks-async's config.h/.c)
 
 ## Launching
 
