@@ -37,5 +37,5 @@ for battery in /sys/class/power_supply/BAT?*; do
     esac
 
     # Prints the info
-    update "$status $capacity%" "#ff0000"
+    update "$capacity%" "#88aa77" "#111122" "$status " "#225533" "#ddddee"
 done && echo

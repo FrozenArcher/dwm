@@ -2,4 +2,4 @@
 # Displays the current time.
 
 . $DWM_BAR/update
-update " $(date '+%H:%M:%S %Y/%m/%d')" "#ffffff" "#000000"
+update "$(date '+%H:%M:%S %Y/%m/%d')" "#4455bb" "#ffffff" " " "#2233bb" "#ffffff"

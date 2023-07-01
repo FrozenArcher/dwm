@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. $DWM_BAR/update
+
+update "⏻"

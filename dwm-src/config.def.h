@@ -14,7 +14,7 @@ static const int vertpad            = 8;       /* vertical padding of bar */
 static const int sidepad            = 8;       /* horizontal padding of bar */
 static const int horizpadbar        = 4;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 24;        /* vertical padding for statusbar */
-static const int barborder          = 6;      /* (top and bottom) border for status bar */
+static const int barborder          = 8;      /* (top and bottom) border for status bar */
 static const char *fonts[]          = { "LXGW Wenkai:size=11", "monospace:size=11" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#22222a";

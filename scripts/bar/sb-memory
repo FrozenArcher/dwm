@@ -1,0 +1,5 @@
+#!/bin/sh
+# Displays RAM usage.
+
+. $DWM_BAR/update
+update "$(free --mebi | awk 'NR==2 {printf ("%2.2fGiB\n", ($3 / 1024))}')" "#000000" "#ffffff" " " "#ffffff" "#000000"

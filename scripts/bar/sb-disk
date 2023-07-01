@@ -1,0 +1,16 @@
+#!/bin/sh
+# Displays the disk usages of root and home partitions.
+
+. $DWM_BAR/update
+
+disk_avail() {
+    echo "$(df $1 | awk 'NR==2 {printf "%2.1f", ($4 / 1024 / 1024)}')"
+}
+
+disk_perc() {
+    echo "$(df $1 | awk 'NR==2 {printf $5}')"
+}
+
+#update "󰋊 $(disk_usage /)GB $(disk_usage /home)GB" "$c_defbg" "#d9d536"
+
+update "󰋊  /:$(disk_perc /) /home:$(disk_perc /home)" "$c_defbg" "#d9d536"

@@ -1,0 +1,8 @@
+#!/bin/sh
+# Displays the average CPU load.
+
+. $DWM_BAR/update
+
+load=$(grep -o "^[^ ]*" /proc/loadavg)
+
+update "$load" "#222244" "#8acaff" " CPU" "#333355" "#8abaff"

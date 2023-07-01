@@ -11,12 +11,22 @@ export c_blue="#000099"
 # update: echo $1; when using dwm, echo colors as well.
 #   if fg/bg is not specified, use default color.
 #   if only one color is specified, use it as background.
+#   if using icon, must specify all colors.
 # params
 # $1 text to display
 # $2 background color [optional]
 # $3 foreground color [optional]
+# $4 icon text [optional]
+# $5 icon background [optional]
+# $6 icon foreground [optional]
 update() {
-    if [[ ! -z "$2" ]] && [[ ! -z "$3" ]]; then
+    if [ $# -eq 6 ]; then
+        bg="$2"
+        fg="$3"
+        icon="$4"
+        iconbg="$5"
+        iconfg="$6"
+    elif [[ ! -z "$2" ]] && [[ ! -z "$3" ]]; then
         bg="$2"
         fg="$3"
     elif [[ ! -z "$2" ]] && [[ -z "$3" ]]; then
@@ -29,10 +39,18 @@ update() {
 
     case "$STATUSBAR" in
         "dwmblocks")
-            echo "^f$sep_px^^b$bg^^c$fg^$padding$1$padding^d^"
+            if [[ -z "$icon" ]]; then
+                echo "^f$sep_px^^b$bg^^c$fg^$padding$1$padding^d^"
+            else
+                echo "^f$sep_px^^b$iconbg^^c$iconfg^$padding$icon$padding^b$bg^^c$fg^$padding$1$padding^d^"
+            fi
             ;;
         *)
-            echo "$1"
+            if [[ -z "$icon" ]]; then
+                echo "$1"
+            else
+                echo "$icon$padding$1"
+            fi
             ;;
     esac
 }
