@@ -327,6 +327,7 @@ static Atom wmatom[WMLast], netatom[NetLast], xatom[XLast];
 static int running = 1;
 static Cur *cursor[CurLast];
 static Clr **scheme;
+static Clr **layoutscheme;
 static Display *dpy;
 static Drw *drw;
 static Monitor *mons, *selmon;
@@ -1032,9 +1033,16 @@ drawbar(Monitor *m)
 				urg & 1 << i);
 		x += w;
 	}
+    
+    x += bargaptl;
+
 	w = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeTagsNorm]);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+    drw_setscheme(drw, scheme[SchemeTagsNorm]);
+    drw_rect(drw, x - bargaptl, 0, w + bargapli + bargaptl, bh, 1, 1);
+	drw_setscheme(drw, layoutscheme[curlayout]);
+	x = drw_text(drw, x, vp, w, bh - 2 * vp, lrpad / 2, m->ltsymbol, 0);
+
+    x += bargapli;
 
 	if ((w = m->ww - tw - stw - x) > bh) {
         w -= 2 * sp; // gaps offset
@@ -2167,6 +2175,10 @@ setup(void)
 	scheme[LENGTH(colors)] = drw_scm_create(drw, colors[0], 3);
 	for (i = 0; i < LENGTH(colors); i++)
 		scheme[i] = drw_scm_create(drw, colors[i], 3);
+	layoutscheme = ecalloc(LENGTH(layoutcolors) + 1, sizeof(Clr *));
+	layoutscheme[LENGTH(layoutcolors)] = drw_scm_create(drw, layoutcolors[0], 2);
+	for (i = 0; i < LENGTH(layoutcolors); i++)
+		layoutscheme[i] = drw_scm_create(drw, layoutcolors[i], 2);
 	/* init system tray */
 	updatesystray();
 	/* init bars */

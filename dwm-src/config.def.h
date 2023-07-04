@@ -22,6 +22,8 @@ static const int sidepad            = 8;       /* horizontal padding of bar */
 static const int horizpadbar        = 4;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 24;        /* vertical padding for statusbar */
 static const int barborder          = 8;      /* (top and bottom) border for status bar */
+static const int bargaptl           = 16;      /* gap between tags and ltsymbol */
+static const int bargapli           = 16;      /* gap between ltsymbol and info bar */
 static const char *fonts[]          = { "LXGW Wenkai:size=11", "monospace:size=11" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#22222a";
@@ -74,6 +76,14 @@ static const Layout layouts[] = {
 	[LayoutMonocle] =   { "MONO",       monocle },
     [LayoutHorizGrid] = { "GRID",       horizgrid},
 	[LayoutFloat] =     { "FLOAT",      NULL },    /* no layout function means floating behavior */
+};
+
+static const char *layoutcolors[][2] = {
+                        /* fg           bg*/
+    [LayoutTile] =      { "#2f2f4f", "#f2f2f4" },
+    [LayoutMonocle] =   { "#2f2f4f", "#f2f2f4" },
+    [LayoutHorizGrid] = { "#2f2f4f", "#f2f2f4" },
+    [LayoutFloat] =     { "#2f2f4f", "#f2f2f4" },
 };
 
 /* key definitions */
