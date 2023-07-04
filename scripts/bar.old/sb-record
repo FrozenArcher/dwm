@@ -1,7 +1,0 @@
-#!/bin/sh
-# Displays an indicator during screen records.
-
-if [ -f /tmp/record ]; then
-    . $DWM_BAR/sb-theme
-    display "" "#000000"
-fi

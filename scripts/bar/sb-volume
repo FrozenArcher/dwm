@@ -1,16 +1,8 @@
 #!/bin/sh
 
-case $BLOCK_BUTTON in
-    1) setsid -f "$TERMINAL" -e pulsemixer ;;
-    2) pamixer -t ;;
-    4) pamixer -i 3 ;;
-    5) pamixer -d 3 ;;
-    6) "$TERMINAL" -e "$EDITOR" "$0" ;;
-esac
-
-. $DWM_BAR/sb-theme
+. $DWM_BAR/update
 if [ "$(pamixer --get-mute)" = true ]; then
-    display "  " 9
+    update "  " "#999999"
     exit
 fi
 
@@ -25,4 +17,4 @@ else
     icon="  "
 fi
 
-display "$icon$vol%" "#000000"
+update "$vol%" "#444444" "#ffffff" "$icon" "#222222" "#aaaaaa"
