@@ -72,7 +72,7 @@
 
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
-enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeInfoSel, SchemeInfoNorm }; /* color schemes */
+enum { SchemeNorm, SchemeSel, SchemeStatus, SchemeTagsSel, SchemeTagsNorm, SchemeTagsDim, SchemeInfoSel, SchemeInfoNorm }; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
@@ -995,7 +995,7 @@ drawstatusbar(Monitor *m, int bh, char* stext) {
 void
 drawbar(Monitor *m)
 {
-	int x, w, tw = 0, mw, ew = 0, stw = 0;
+	int x, w, tw = 0, mw, ew = 0, stw = 0, cw;
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0, n = 0;
@@ -1023,7 +1023,8 @@ drawbar(Monitor *m)
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
+        if (!(occ & 1 << i)) drw_setscheme(drw, scheme[SchemeTagsDim]);
+        else drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
 		if (ulineall || m->tagset[m->seltags] & 1 << i)
 			drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
@@ -1044,8 +1045,7 @@ drawbar(Monitor *m)
 
     x += bargaplc;
 
-	if ((w = m->ww - tw - stw - x) > bh) {
-        w -= 2 * sp; // gaps offset
+	if ((w = m->ww - 2*sp - tw - stw - x) > bh) {
 		if (n > 0) {
 			tw = TEXTW(m->sel->name) + lrpad;
 			mw = (tw >= w || n == 1) ? 0 : (w - tw) / (n - 1);
@@ -1066,7 +1066,9 @@ drawbar(Monitor *m)
 			for (c = m->clients; c; c = c->next) {
 				if (!ISVISIBLE(c))
 					continue;
-				tw = MIN(m->sel == c ? w : mw, TEXTW(c->name));
+
+                cw = TEXTW("A") * minclientlen > TEXTW(c->name) ? TEXTW(" ") * minclientlen : TEXTW(c->name);
+				tw = MIN(m->sel == c ? w : mw, cw);
 
 		 	    drw_setscheme(drw, scheme[m == selmon && m->sel == c ? SchemeInfoSel : SchemeInfoNorm]);
 				if (tw > lrpad / 2) {

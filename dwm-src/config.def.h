@@ -24,34 +24,39 @@ static const int vertpadbar         = 24;        /* vertical padding for statusb
 static const int barborder          = 8;      /* (top and bottom) border for status bar */
 static const int bargaptl           = 16;      /* gap between tags and ltsymbol */
 static const int bargaplc           = 16;      /* gap between ltsymbol and client bar */
+static const int minclientlen       = 6;       /* min client name length */
 static const char *fonts[]          = { "LXGW Wenkai:size=11", "monospace:size=11" };
 static const char dmenufont[]       = "monospace:size=12";
-static const char col_gray1[]       = "#22222a";
-static const char col_gray2[]       = "#44444c";
+static const char col_gray1[]       = "#222232";
+static const char col_gray2[]       = "#54546c";
 static const char col_gray3[]       = "#bbbbca";
 static const char col_gray4[]       = "#eeeeff";
 static const char col_gray5[]       = "#333338";
 static const char col_gray6[]       = "#191929";
 static const char col_cyan[]        = "#333338";
+static const char col_orange[]      = "#ffaa00";
+static const char col_cyan1[]       = "#07c7ff";
+static const char col_darkblue[]    = "#1b1b2b";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeSel]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 	[SchemeStatus]  = { col_gray4, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_gray4, col_gray5,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_orange, col_gray1,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
 	[SchemeTagsNorm]  = { col_gray3, col_gray1,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_gray4, col_gray5,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-	[SchemeInfoNorm]  = { col_gray3, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeTagsDim]  = { col_gray2, col_gray1,  "#000000"  }, // Tagbar left inactive {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_cyan1, col_darkblue,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm]  = { col_gray2, col_gray1,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
-static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
+static const char *tags[] = { "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
 
 static const unsigned int ulinepad	= 0;	/* horizontal padding between the underline and tag */
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 1;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
-static const int ulineallclient    = 0;    /* 1 to add underline for all clients, 0 for only active client */
+static const int ulineallclient    = 1;    /* 1 to add underline for all clients, 0 for only active client */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -81,10 +86,10 @@ static const Layout layouts[] = {
 
 static const char *layoutcolors[][2] = {
                         /* fg           bg*/
-    [LayoutTile] =      { "#2f2f4f", "#f2f2f4" },
-    [LayoutMonocle] =   { "#2f2f4f", "#f2f2f4" },
-    [LayoutHorizGrid] = { "#2f2f4f", "#f2f2f4" },
-    [LayoutFloat] =     { "#2f2f4f", "#f2f2f4" },
+    [LayoutTile] =      { "#f2f2f4", "#2f2f4f" },
+    [LayoutMonocle] =   { "#f2f2f4", "#2f2f4f" },
+    [LayoutHorizGrid] = { "#f2f2f4", "#2f2f4f" },
+    [LayoutFloat] =     { "#f2f2f4", "#2f2f4f" },
 };
 
 /* key definitions */
