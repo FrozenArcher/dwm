@@ -33,6 +33,7 @@ launch_dwm
 * barpadding
 * colorbar
 * fancybar
+* horizgrid
 * pertag
 * preserveonrestart
 * status2d
