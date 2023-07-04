@@ -42,3 +42,10 @@ launch_dwm
 * systray
 * underlinetags
 * vanitygaps
+
+## Extra features
+
+* Iterating through layouts
+* Customized gap size between bar regions
+* Bar border size
+* `ltsymbol` in a block
