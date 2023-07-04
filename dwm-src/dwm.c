@@ -81,7 +81,7 @@ enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
        ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
-enum { LayoutTile, LayoutFloat, LayoutMonocle, LayoutHorizGrid }; /* layouts */
+enum { LayoutTile, LayoutFloat, LayoutMonocle, LayoutHorizGrid, LayoutTotal }; /* layouts */
 
 typedef union {
 	int i;
@@ -215,6 +215,7 @@ static void maprequest(XEvent *e);
 static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
+static void nextlayout(const Arg *arg);
 static Client *nexttiled(Client *c);
 static void pop(Client *c);
 static void propertynotify(XEvent *e);
@@ -246,6 +247,7 @@ static void incrivgaps(const Arg *arg);
 static void togglegaps(const Arg *arg);
 static void defaultgaps(const Arg *arg);
 static void setlayout(const Arg *arg);
+static void setlayoutnum(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
 static void seturgent(Client *c, int urg);
@@ -291,6 +293,7 @@ static void zoom(const Arg *arg);
 static Systray *systray = NULL;
 static const char broken[] = "broken";
 static char stext[1024];
+static int curlayout = 0;
 static int statussig;
 static int statusw;
 static pid_t statuspid = -1;
@@ -1506,8 +1509,8 @@ monocle(Monitor *m)
 	for (c = m->clients; c; c = c->next)
 		if (ISVISIBLE(c))
 			n++;
-	if (n > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+	// if (n > 0) /* override layout symbol */
+	// 	snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
 		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 }
@@ -1587,6 +1590,22 @@ movemouse(const Arg *arg)
 		selmon = m;
 		focus(NULL);
 	}
+}
+
+void
+nextlayout(const Arg *arg) {
+    if (!arg) return;
+    if (arg->i == 0) return;
+    if (arg->i > 0) {
+        curlayout++;
+        if (curlayout >= LayoutTotal) curlayout = 0;
+    } else {
+        curlayout--;
+        if (curlayout < 0) curlayout = LayoutTotal - 1;
+    }
+    Arg _arg;
+    _arg.i = curlayout;
+    setlayoutnum(&_arg);
 }
 
 Client *
@@ -2068,6 +2087,14 @@ setlayout(const Arg *arg)
 		arrange(selmon);
 	else
 		drawbar(selmon);
+}
+
+void
+setlayoutnum(const Arg *arg) {
+    if (!arg) return;
+    if (arg->i < 0 || arg->i >= LayoutTotal) return;
+    setlayout(&((Arg){.v = &layouts[arg->i]}));
+    curlayout = arg->i;
 }
 
 /* arg > 1.0 will set mfact absolutely */
