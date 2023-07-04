@@ -29,6 +29,7 @@ launch_dwm
 
 ## Patches
 
+* actualfullscreen
 * barpadding
 * colorbar
 * fancybar
