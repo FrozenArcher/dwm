@@ -32,6 +32,7 @@ launch_dwm
 * barpadding
 * colorbar
 * fancybar
+* pertag
 * preserveonrestart
 * status2d
 * statuscmd
