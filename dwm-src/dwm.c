@@ -81,6 +81,7 @@ enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
 enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
 enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
        ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
+enum { LayoutTile, LayoutFloat, LayoutMonocle, LayoutHorizGrid }; /* layouts */
 
 typedef union {
 	int i;
