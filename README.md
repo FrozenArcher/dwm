@@ -49,3 +49,4 @@ launch_dwm
 * Customized gap size between bar regions
 * Bar border size
 * `ltsymbol` in a block
+* underline for client bar

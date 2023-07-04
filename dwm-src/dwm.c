@@ -1025,7 +1025,7 @@ drawbar(Monitor *m)
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		if (ulineall || m->tagset[m->seltags] & 1 << i) /* if there are conflicts, just move these lines directly underneath both 'drw_setscheme' and 'drw_text' :) */
+		if (ulineall || m->tagset[m->seltags] & 1 << i)
 			drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, w - (ulinepad * 2), ulinestroke, 1, 0);
 		if (occ & 1 << i)
 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
@@ -1038,11 +1038,11 @@ drawbar(Monitor *m)
 
 	w = TEXTW(m->ltsymbol);
     drw_setscheme(drw, scheme[SchemeTagsNorm]);
-    drw_rect(drw, x - bargaptl, 0, w + bargapli + bargaptl, bh, 1, 1);
+    drw_rect(drw, x - bargaptl, 0, w + bargaplc + bargaptl, bh, 1, 1);
 	drw_setscheme(drw, layoutscheme[curlayout]);
 	x = drw_text(drw, x, vp, w, bh - 2 * vp, lrpad / 2, m->ltsymbol, 0);
 
-    x += bargapli;
+    x += bargaplc;
 
 	if ((w = m->ww - tw - stw - x) > bh) {
         w -= 2 * sp; // gaps offset
@@ -1069,8 +1069,14 @@ drawbar(Monitor *m)
 				tw = MIN(m->sel == c ? w : mw, TEXTW(c->name));
 
 		 	    drw_setscheme(drw, scheme[m == selmon && m->sel == c ? SchemeInfoSel : SchemeInfoNorm]);
-				if (tw > lrpad / 2)
+				if (tw > lrpad / 2) {
 					drw_text(drw, x, 0, tw, bh, lrpad / 2, c->name, 0);
+                    if (ulineallclient)
+			            drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, tw + lrpad - (ulinepad * 2), ulinestroke, 1, 0);
+                    else if (m == selmon && m->sel == c)
+			            drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, tw + lrpad - (ulinepad * 2), ulinestroke, 1, 0);
+                }
+                
 				if (c->isfloating)
 					drw_rect(drw, x + boxs, boxs, boxw, boxw, c->isfixed, 0);
 				x += tw;

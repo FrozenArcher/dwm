@@ -23,7 +23,7 @@ static const int horizpadbar        = 4;        /* horizontal padding for status
 static const int vertpadbar         = 24;        /* vertical padding for statusbar */
 static const int barborder          = 8;      /* (top and bottom) border for status bar */
 static const int bargaptl           = 16;      /* gap between tags and ltsymbol */
-static const int bargapli           = 16;      /* gap between ltsymbol and info bar */
+static const int bargaplc           = 16;      /* gap between ltsymbol and client bar */
 static const char *fonts[]          = { "LXGW Wenkai:size=11", "monospace:size=11" };
 static const char dmenufont[]       = "monospace:size=12";
 static const char col_gray1[]       = "#22222a";
@@ -51,6 +51,7 @@ static const unsigned int ulinepad	= 0;	/* horizontal padding between the underl
 static const unsigned int ulinestroke	= 3;	/* thickness / height of the underline */
 static const unsigned int ulinevoffset	= 1;	/* how far above the bottom of the bar the line should appear */
 static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
+static const int ulineallclient    = 0;    /* 1 to add underline for all clients, 0 for only active client */
 
 static const Rule rules[] = {
 	/* xprop(1):
