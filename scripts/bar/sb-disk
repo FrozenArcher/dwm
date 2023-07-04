@@ -13,4 +13,4 @@ disk_perc() {
 
 #update "󰋊 $(disk_usage /)GB $(disk_usage /home)GB" "$c_defbg" "#d9d536"
 
-update "󰋊  /:$(disk_perc /) /home:$(disk_perc /home)" "$c_defbg" "#d9d536"
+update "/:$(disk_perc /) /home:$(disk_perc /home)" "#121222" "#b9c9d9" "󰋊" "#343464" "#d9e9f9"

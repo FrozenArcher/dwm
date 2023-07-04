@@ -4,7 +4,7 @@
 sep_px=12
 padding=" "
 
-export c_defbg="#22222a"
+export c_defbg="#222232"
 export c_deffg="#eeeeff"
 export c_blue="#000099"
 

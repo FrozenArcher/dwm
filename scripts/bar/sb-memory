@@ -2,4 +2,4 @@
 # Displays RAM usage.
 
 . $DWM_BAR/update
-update "$(free --mebi | awk 'NR==2 {printf ("%2.2fGiB\n", ($3 / 1024))}')" "#000000" "#ffffff" " " "#ffffff" "#000000"
+update "$(free --mebi | awk 'NR==2 {printf ("%2.2fGiB\n", ($3 / 1024))}')" "#121222" "#dfdfff" " " "#3f4f6f" "#dfdfdf"

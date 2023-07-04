@@ -17,4 +17,4 @@ else
     icon="  "
 fi
 
-update "$vol%" "#444444" "#ffffff" "$icon" "#222222" "#aaaaaa"
+update "$vol%" "#404454" "#dfdfff" "$icon" "#232842" "#aaaaba"
