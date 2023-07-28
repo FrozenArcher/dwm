@@ -23,8 +23,16 @@ if [ $(id -u) -ne 0 ]; then
 	exit 1
 fi
 
+msg() {
+    echo -e "\e[1;34m==> \e[0m\e[1m$1\e[0m"
+}
+
+err() {
+    echo -e "\e[1;31m==> $1\e[0m"
+}
+
 cd $_dwm_dir
-echo "==> Installing dwm..."
+msg "Installing dwm..."
 echo " --- dwm ---" > ../make.log
 
 # delete the config.h created by makefile
@@ -34,7 +42,7 @@ fi
 
 make >> ../make.log
 if [ $? -ne 0 ]; then
-    echo "==> !! DWM compile error. Please see make.log for details."
+    err "!! DWM compile error. Please see make.log for details."
     exit 2
 fi
 
@@ -42,7 +50,7 @@ echo " --- dwm install ---" >> ../make.log
 make install >> ../make.log
 cd ..
 
-echo "==> Installing dwmblocks-async..."
+msg "Installing dwmblocks-async..."
 
 cp -fv ./config-dwmblocks.h ./dwmblocks-async/config.h
 cp -fv ./config-dwmblocks.c ./dwmblocks-async/config.c
@@ -51,15 +59,15 @@ cd $_blks_dir
 echo " --- dwmblocks ---" >> ../make.log
 make install >> ../make.log
 if [ $? -ne 0 ]; then
-    echo "==> !! dwmblocks compile error. Please see make.log for details."
+    err "!! dwmblocks compile error. Please see make.log for details."
     exit 2
 fi
 
 echo " --- DONE --- " >> ../make.log
-echo "==> Done"
+msg "Done"
 cd ..
 
-echo "==> Installing files..."
+msg "Installing files..."
 
 xsessions_dir="/usr/share/xsessions"
 local_bin_dir="/usr/local/bin"
@@ -77,3 +85,4 @@ if [ ! -d "$local_bin_dir" ]; then
 fi
 cp -fv ./launch_dwm $local_bin_dir/launch_dwm
 chmod -v 755 $local_bin_dir/launch_dwm 
+msg "Done"
