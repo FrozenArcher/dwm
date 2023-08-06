@@ -40,14 +40,14 @@ if [ -f ./config.h ]; then
     rm ./config.h
 fi
 
-make >> ../make.log
+make >> ../make.log 2>&1
 if [ $? -ne 0 ]; then
     err "!! DWM compile error. Please see make.log for details."
     exit 2
 fi
 
 echo " --- dwm install ---" >> ../make.log
-make install >> ../make.log
+make install >> ../make.log 2>&1
 cd ..
 
 msg "Installing dwmblocks-async..."
@@ -57,7 +57,7 @@ cp -fv ./config-dwmblocks.c ./dwmblocks-async/config.c
 
 cd $_blks_dir
 echo " --- dwmblocks ---" >> ../make.log
-make install >> ../make.log
+make install >> ../make.log 2>&1
 if [ $? -ne 0 ]; then
     err "!! dwmblocks compile error. Please see make.log for details."
     exit 2
