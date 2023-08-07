@@ -8,6 +8,8 @@ Make sure `/usr/local/bin` is in your `PATH`!
 ```bash
 git clone git@github.com:FrozenArcher/dwm.git $HOME/dwm
 cd $HOME/dwm
+git submodule init
+git submodule update
 sudo make install
 ```
 
