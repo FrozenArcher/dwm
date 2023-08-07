@@ -19,6 +19,8 @@ make_dwm: $(DWMBLOCKS)/Makefile
 
 make_dwmblocks: $(DWMBLOCKS)/Makefile
 	@echo -e "\e[1;34m==> Installing dwmblocks\e[0m"
+	cp -f $(PWD)/config-dwmblocks.h $(DWMBLOCKS)/config.h
+	cp -f $(PWD)/config-dwmblocks.c $(DWMBLOCKS)/config.c
 	@echo "-- installing dwmblocks --" >> $(MAKE_LOG)
 	make -C $(DWMBLOCKS) -f $(DWMBLOCKS)/Makefile install >> $(MAKE_LOG)
 	@echo "-- done --" >> $(MAKE_LOG)
