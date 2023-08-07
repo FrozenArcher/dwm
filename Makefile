@@ -28,7 +28,7 @@ install_files: $(XSESSIONS_DIR)/dwm.desktop $(LOCAL_BIN_DIR)/launch_dwm $(LOCAL_
 $(DWMBLOCKS)/Makefile:
 	@echo -e "\e[1;34m==> Bootstrap\e[0m"
 	git submodule init
-	git submodule update --progress
+	git submodule update
 
 $(XSESSIONS_DIR)/dwm.desktop: $(PWD)/dwm.desktop
 	install -Dm644 $(PWD)/dwm.desktop $(XSESSIONS_DIR)/dwm.desktop
