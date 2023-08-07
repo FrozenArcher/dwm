@@ -5,7 +5,9 @@ if [[ -z "$DWM_DIR" ]]; then
 fi
 
 export STATUSBAR="dwmblocks"
-export DWM_BAR="$DWM_DIR/scripts/bar"
+export DWM_SCRIPTS="$DWM_DIR/scripts"
+export DWM_CONFIG="$DWM_DIR/config"
+export DWM_BAR="$DWM_SCRIPTS/bar"
 
 dwmblocks &
 

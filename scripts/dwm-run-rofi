@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [[ -z $DWM_CONFIG ]]; then
+    exit 1
+fi
+
+case $1 in
+    dmenu)
+        rofi -show drun -config $DWM_CONFIG/rofi/rofi-dmenu.rasi
+        ;;
+    *)
+        echo "Argument $1 not found."
+        exit 1
+        ;;
+esac

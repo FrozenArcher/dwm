@@ -69,20 +69,4 @@ cd ..
 
 msg "Installing files..."
 
-xsessions_dir="/usr/share/xsessions"
-local_bin_dir="/usr/local/bin"
-
-if [ ! -d "$xsessions_dir" ]; then
-    echo "$xsessions_dir not found."
-	mkdir -pv "$xsessions_dir"
-fi
-cp -fv ./dwm.desktop $xsessions_dir/dwm.desktop
-chmod -v 644 $xsessions_dir/dwm.desktop
-
-if [ ! -d "$local_bin_dir" ]; then
-    echo "$local_bin_dir not found."
-	mkdir -pv "$local_bin_dir"
-fi
-cp -fv ./launch_dwm $local_bin_dir/launch_dwm
-chmod -v 755 $local_bin_dir/launch_dwm 
-msg "Done"
+make install_files
