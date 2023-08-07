@@ -10,7 +10,7 @@ MAKE_LOG = $(PWD)/make.log 2>&1
 
 install: make_dwm make_dwmblocks install_files
 
-make_dwm:
+make_dwm: $(DWMBLOCKS)/Makefile
 	@echo -e "\e[1;34m==> Installing dwm\e[0m"
 	@echo "-- compiling dwm --" > $(MAKE_LOG)
 	make -C $(DWM_SRC) -f $(DWM_SRC)/Makefile >> $(MAKE_LOG)
@@ -26,9 +26,7 @@ make_dwmblocks: $(DWMBLOCKS)/Makefile
 install_files: $(XSESSIONS_DIR)/dwm.desktop $(LOCAL_BIN_DIR)/launch_dwm $(LOCAL_BIN_DIR)/dwm-run-rofi
 
 $(DWMBLOCKS)/Makefile:
-	@echo -e "\e[1;34m==> Bootstrap\e[0m"
-	git submodule init
-	git submodule update
+	$(error Submodule not initialized)
 
 $(XSESSIONS_DIR)/dwm.desktop: $(PWD)/dwm.desktop
 	install -Dm644 $(PWD)/dwm.desktop $(XSESSIONS_DIR)/dwm.desktop
