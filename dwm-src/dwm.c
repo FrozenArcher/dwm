@@ -1073,9 +1073,7 @@ drawbar(Monitor *m)
 		 	    drw_setscheme(drw, scheme[m == selmon && m->sel == c ? SchemeInfoSel : SchemeInfoNorm]);
 				if (tw > lrpad / 2) {
 					drw_text(drw, x, 0, tw, bh, lrpad / 2, c->name, 0);
-                    if (ulineallclient)
-			            drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, tw + lrpad - (ulinepad * 2), ulinestroke, 1, 0);
-                    else if (m == selmon && m->sel == c)
+                    if ((ulineallclient) || (m == selmon && m ->sel == c))
 			            drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, tw + lrpad - (ulinepad * 2), ulinestroke, 1, 0);
                 }
                 
