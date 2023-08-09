@@ -13,6 +13,7 @@ install: make_dwm make_dwmblocks install_files
 make_dwm: $(DWMBLOCKS)/Makefile
 	@echo -e "\e[1;34m==> Installing dwm\e[0m"
 	@echo "-- compiling dwm --" > $(MAKE_LOG)
+	cp -f $(DWM_SRC)/config.def.h $(DWM_SRC)/config.h
 	make -C $(DWM_SRC) -f $(DWM_SRC)/Makefile >> $(MAKE_LOG)
 	@echo "-- installing dwm --" >> $(MAKE_LOG)
 	make -C $(DWM_SRC) -f $(DWM_SRC)/Makefile install >> $(MAKE_LOG)
