@@ -107,7 +107,7 @@ static const char *layoutcolors[][2] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dwm-run-rofi", "dmenu", NULL };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *pkillcmd[]  = { "pkill", "dwm", NULL };
 
 static const Key keys[] = {
